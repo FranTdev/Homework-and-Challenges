@@ -10,15 +10,7 @@ import "./App.css"
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const auth = getAuth();
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setIsLoggedIn(!!user); // Actualiza el estado según si hay un usuario
-        });
-
-        return () => unsubscribe(); // Limpia la suscripción
-    }, [auth]);
 
     return (
         <AuthProvider>

@@ -27,7 +27,7 @@
 }
 
 .auth-form input {
-    width: 100%; /* Ancho completo */
+    width: 40vh; /* Ancho completo */
     padding: 12px; /* Espaciado interno */
     margin: 10px 0; /* Espaciado entre campos */
     border: 1px solid #ccc; /* Borde sutil */
@@ -42,9 +42,11 @@
 }
 
 .auth-form button {
-    width: 100%; /* Ancho completo */
-    padding: 12px; /* Espaciado interno */
-    margin-top: 10px; /* Espaciado superior */
+    align-items: center;
+    width: 43vh; /* Ancho completo */
+    height: 40px;
+    margin: 0;
+    margin-top: 50px;
     border: none; /* Sin borde */
     border-radius: 5px; /* Bordes redondeados */
     background-color: #000; /* Color de fondo */
