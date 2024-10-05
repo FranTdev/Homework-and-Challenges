@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AuthForm from './components/AuthForm';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from './context/AuthContext';
 import Home from './Home';
 import Dashboard from './Dashboard';
@@ -9,58 +9,40 @@ import ProtectedRoute from './ProtectedRoute';
 import "./App.css"
 
 const App = () => {
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const auth = getAuth();
 
-    const login = () => {
-      // Lógica de inicio de sesión
-      console.log('Usuario ha iniciado sesión');
-      setIsLoggedIn(true);
-    };
-  
-    const logout = () => {
-      // Lógica de cierre de sesión
-      console.log('Usuario ha cerrado sesión');
-      setIsLoggedIn(false);
-    };
-  
-    const handleButtonClick = () => {
-      if (isLoggedIn) {
-        logout();
-      } else {
-        login();
-      }
-    };
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setIsLoggedIn(!!user); // Actualiza el estado según si hay un usuario
+        });
+
+        return () => unsubscribe(); // Limpia la suscripción
+    }, [auth]);
 
     return (
         <AuthProvider>
-        <Router>
-            <Routes>
-                {/* Página pública */}
-                <Route path="/" element={<Home />} />
-
-                {/* Páginas privadas, protegidas por la autenticación */}
-                <Route 
-                    path="/dashboard" 
-                    element={
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route 
+                        path="/dashboard" 
+                        element={
                             <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                <Dashboard/>
+                                <Dashboard />
                             </ProtectedRoute>
-                    }
-                />
-                <Route 
-                    path="/profile" 
-                    element={
+                        } 
+                    />
+                    <Route 
+                        path="/profile" 
+                        element={
                             <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                <Profile/>
+                                <Profile />
                             </ProtectedRoute>
-                    }
-                />
-            </Routes>
-            <button onClick={handleButtonClick}>
-                {isLoggedIn ? 'logout' : 'login'}
-            </button>
-        </Router>
+                        } 
+                    />
+                </Routes>
+            </Router>
         </AuthProvider>
     );
 };
