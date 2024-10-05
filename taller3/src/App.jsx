@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AuthForm from './components/AuthForm';
+import { AuthProvider } from './context/AuthContext';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
@@ -31,6 +33,7 @@ const App = () => {
     };
 
     return (
+        <AuthProvider>
         <Router>
             <Routes>
                 {/* Página pública */}
@@ -58,6 +61,7 @@ const App = () => {
                 {isLoggedIn ? 'logout' : 'login'}
             </button>
         </Router>
+        </AuthProvider>
     );
 };
 
