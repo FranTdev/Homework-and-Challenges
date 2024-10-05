@@ -1,15 +1,17 @@
-import { useAuth } from "./context/AuthContext";
-import { Navigate } from "react-router-dom";
+import React from 'react';
+import { useAuth } from './context/AuthContext';
+import { Navigate } from 'react-router-dom';
 
-function ProtectedRoute({ children }) {
-  const { currentUser } = useAuth();
+const ProtectedRoute = ({ children }) => {
+    const { currentUser } = useAuth();
 
-  if (!currentUser) {
-    alert('Por favor inicia sesion');
-    return <Navigate to="/" />;
-  }
+    // Si no hay un usuario autenticado, redirigir al inicio ("/")
+    if (!currentUser) {
+        return <Navigate to="/" />;
+    }
 
-  return children;
-}
+    // Si hay un usuario autenticado, renderizar los componentes hijos
+    return children;
+};
 
 export default ProtectedRoute;

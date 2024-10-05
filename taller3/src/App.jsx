@@ -1,37 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from './context/AuthContext';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
 import ProtectedRoute from './ProtectedRoute';
-import "./App.css"
+import "./App.css";
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
     return (
         <AuthProvider>
             <Router>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route 
-                        path="/dashboard" 
+                    <Route
+                        path="/dashboard"
                         element={
-                            <ProtectedRoute isLoggedIn={isLoggedIn}>
+                            <ProtectedRoute>
                                 <Dashboard />
                             </ProtectedRoute>
-                        } 
+                        }
                     />
-                    <Route 
-                        path="/profile" 
+                    <Route
+                        path="/profile"
                         element={
-                            <ProtectedRoute isLoggedIn={isLoggedIn}>
+                            <ProtectedRoute>
                                 <Profile />
                             </ProtectedRoute>
-                        } 
+                        }
                     />
                 </Routes>
             </Router>

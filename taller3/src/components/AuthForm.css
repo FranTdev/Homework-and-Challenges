@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center; /* Centrar el contenido */
     align-items: center; /* Alinear verticalmente */
-    height: 100vh; /* Ocupa toda la altura de la ventana */
+    height: 70vh; /* Ocupa toda la altura de la ventana */
 }
 
 /* Estilos del formulario */

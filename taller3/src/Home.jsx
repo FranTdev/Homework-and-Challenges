@@ -1,13 +1,15 @@
 import React from "react";
 import NavComponent from "./components/NavComponent";
-import AuthForm from "./components/AuthForm"; // Importa tu formulario de autenticación
+import AuthForm from "./components/AuthForm"; 
+import UserInfo from './components/UserInfo';
 
 const Home = () => {
     return (
         <div>
             <NavComponent />
+            <UserInfo/>
             <h1>Home Page</h1>
-            <AuthForm /> {/* Inserta el formulario aquí */}
+            <AuthForm /> 
         </div>
     );
 };
