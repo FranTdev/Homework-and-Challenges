@@ -6,7 +6,7 @@
     return (
         <div>
             <NavComponent/>
-            <h1>Dashboard Side</h1>
+            <h1>Dashboard Page</h1>
         </div>
     );
 };

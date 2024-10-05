@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
+import ProtectedRoute from './ProtectedRoute';
 import "./App.css"
 
 const App = () => {
@@ -39,13 +40,17 @@ const App = () => {
                 <Route 
                     path="/dashboard" 
                     element={
-                            <Dashboard />
+                            <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                <Dashboard/>
+                            </ProtectedRoute>
                     }
                 />
                 <Route 
                     path="/profile" 
                     element={
-                            <Profile />
+                            <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                <Profile/>
+                            </ProtectedRoute>
                     }
                 />
             </Routes>

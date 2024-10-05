@@ -5,7 +5,7 @@ const Home = () => {
     return (
         <div>
             <NavComponent/>
-            <h1>Home side</h1>
+            <h1>Home Page</h1>
         </div>
     );
 };

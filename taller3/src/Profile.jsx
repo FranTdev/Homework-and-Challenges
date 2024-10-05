@@ -5,7 +5,7 @@ const Profile = () => {
     return(
         <div>
             <NavComponent/>
-            <h1>Profile Side</h1>
+            <h1>Profile Page</h1>
         </div>
     );
 };
