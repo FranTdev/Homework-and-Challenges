@@ -22,7 +22,7 @@ const getCategories = (req, res) => {
     Category.find()
         .then(categories => res.status(200).json(categories))
         .catch(err => {
-            res.status(500),json({ error: err.message });
+            res.status(500).json({ error: err.message });
             console.log("Ha ocurrido un error al obtener las categorias")
         })
 }
